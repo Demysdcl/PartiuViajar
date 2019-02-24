@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="bootstrap.min.css" rel="stylesheet">
+	    <script src="vue.js"></script>
+	    <script src="vue-infinite-loading.js"></script>
+    </head>
+
+    <body>
+        <div id="app" class="content">
+            <div class="card">
+                <div class="card-header">
+                    <h5 >{{title}}</h5>
+                </div>
+    
+                <div class="card-body">
+                    <v-input v-for="(key, idx) in keys" :key="idx" 
+                        :label="toLabel(key)" v-model="travel[key]">
+                    </v-input>
+                    <button class="btn btn-primary mt-3" style="float: right" @click="booking()">
+                        Agendar
+                    </button>
+                </div>
+
+                <div v-if="status !== ''" class="card-footer text-muted">
+                    <h5>Status: {{status}}</h5>
+                    <infinite-loading v-if="status === 'processando...'"></infinite-loading>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+<script src="index.js"></script>
+<style>
+    body {
+        background-image: url("Travel.jpg");
+        background-position: center;
+        width: 100%;
+    }
+
+    .content {
+        width: 100%; 
+        padding: 2rem;
+    }
+
+    .card {
+        width: 60%;
+        margin: auto;
+    }
+</style>
